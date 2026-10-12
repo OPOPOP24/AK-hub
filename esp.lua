@@ -13,7 +13,7 @@ if not Camera then
     repeat task.wait() Camera = Workspace.CurrentCamera until Camera
 end
 
-local SECRET_KEY = "IRUEGDJDJD"
+local VALID_KEYS = _G.__ESP_VALID_KEYS or {}
 local keyVerified = false
 
 local ESP_TRANS         = 0.3
@@ -384,7 +384,7 @@ local function createKeySystem()
     status.TextSize = 10
 
     local function tryUnlock()
-        if input.Text == SECRET_KEY then
+    if VALID_KEYS[input.Text:gsub("%s+", "")] then
             status.Text = "OK"
             status.TextColor3 = Color3.fromRGB(100, 220, 120)
             task.wait(0.4)
